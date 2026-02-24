@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Game Controller",
+    "maps": [
+        {
+            "name": "Game Controller",
+            "id": "1ec696d6-d716-4601-9c82-010bf452851a",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "14179357-3654-4c24-bcf9-f17f0187d925",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "64dff79b-94aa-4177-9509-fd0fea4d796d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
