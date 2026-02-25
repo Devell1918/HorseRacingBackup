@@ -15,6 +15,6 @@ MonoBehaviour:
   maxPositions: 3
   startPosition: {x: 5.5, y: 1, z: 0}
   avaliblePositions:
-  - {x: 5.5, y: 1, z: 13.333}
   - {x: 5.5, y: 1, z: 26.667}
-  - {x: 5.5, y: 1, z: 40}
+  - {x: 5.5, y: 1, z: 53.333}
+  - {x: 5.5, y: 1, z: 80}

@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private PositionsSO positionSO;
+    [SerializeField] private string nameOfHorse;
     public PositionsSO PositionsSO { get { return positionSO; } set { positionSO = value; } }
+    public string NameOFHorse{ get { return nameOfHorse; } set { nameOfHorse = value; } }
 
-    [SerializeField] float moveSpeed;
     [SerializeField] float moveTime = 1;
     int position = 0;
 
-    private bool moveForwardBool = false;
+    public bool moveForwardBool = false;
     private bool isMoving = false;
 
     private void Awake()
@@ -45,8 +46,6 @@ public class Movement : MonoBehaviour
         moveForwardBool = false;
         Vector3 targetPosition = positionSO.avaliblePositions[position];
         Vector3 startPosition = transform.position;
-        Debug.Log(startPosition);
-        Debug.Log(targetPosition);
         float elapsed = 0;
 
 
