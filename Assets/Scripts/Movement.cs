@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     int position = 0;
 
     private bool moveForwardBool = false;
+    private bool isMoving = false;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         
-        if (moveForwardBool & (position < positionSO.maxPositions))
+        if (moveForwardBool & (position < positionSO.maxPositions & !isMoving))
         {
             StartCoroutine(MoveForwardCoroutine());
             
@@ -40,6 +41,7 @@ public class Movement : MonoBehaviour
     }
     public IEnumerator MoveForwardCoroutine()
     {
+        isMoving = true;
         moveForwardBool = false;
         Vector3 targetPosition = positionSO.avaliblePositions[position];
         Vector3 startPosition = transform.position;
@@ -57,6 +59,7 @@ public class Movement : MonoBehaviour
         }
         transform.position = positionSO.avaliblePositions[position];
         
+        isMoving = false;
         position ++;
 
     }

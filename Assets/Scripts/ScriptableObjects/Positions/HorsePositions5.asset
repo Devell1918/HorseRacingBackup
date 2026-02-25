@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3979162df36f1d6468a8ef37ab23b3fd, type: 3}
   m_Name: HorsePositions5
   m_EditorClassIdentifier: Assembly-CSharp::PositionsSO
-  maxPositions: 3
-  startPosition: {x: -0.5, y: 1, z: -5.7}
+  maxPositions: 11
+  startPosition: {x: -1.5, y: 1, z: 0}
   avaliblePositions:
-  - {x: -4.5, y: 1, z: -0.3}
-  - {x: -4.5, y: 1, z: 5.7}
-  - {x: -4.5, y: 1, z: 11.5}
+  - {x: -1.5, y: 1, z: 3.636}
+  - {x: -1.5, y: 1, z: 7.327}
+  - {x: -1.5, y: 1, z: 10.909}
+  - {x: -1.5, y: 1, z: 14.545}
+  - {x: -1.5, y: 1, z: 18.182}
+  - {x: -1.5, y: 1, z: 21.818}
+  - {x: -1.5, y: 1, z: 25.455}
+  - {x: -1.5, y: 1, z: 29.091}
+  - {x: -1.5, y: 1, z: 32.727}
+  - {x: -1.5, y: 1, z: 36.364}
+  - {x: -1.5, y: 1, z: 40}

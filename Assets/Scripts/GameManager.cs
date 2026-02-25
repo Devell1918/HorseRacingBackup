@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        RollDice();
         SpawnHorses();
     }
     public void SpawnHorses()
@@ -23,5 +24,13 @@ public class GameManager : MonoBehaviour
 
 
         }
+    }
+
+    public void RollDice() 
+    {
+        int die1 = RandomNumberGenerator.GetInt32(1, 6);
+        int die2 = RandomNumberGenerator.GetInt32(1, 6);
+
+        Debug.Log(die1 + die2);
     }
 }
