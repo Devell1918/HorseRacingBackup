@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
             Movement newMovement = newHorse.GetComponent<Movement>();
             newMovement.PositionsSO = horsePositions[i];
+
+            //name horse
             int horseNumber = i + 2;
             newMovement.NameOFHorse = horseNumber.ToString();
 

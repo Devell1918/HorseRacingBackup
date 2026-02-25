@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: HorsePositions11
   m_EditorClassIdentifier: Assembly-CSharp::PositionsSO
   maxPositions: 6
-  startPosition: {x: 4.5, y: 1, z: 0}
+  startPosition: {x: 8, y: 1, z: 0}
   avaliblePositions:
-  - {x: 4.5, y: 1, z: 13.333}
-  - {x: 4.5, y: 1, z: 26.667}
-  - {x: 4.5, y: 1, z: 40}
-  - {x: 4.5, y: 1, z: 53.333}
-  - {x: 4.5, y: 1, z: 66.667}
-  - {x: 4.5, y: 1, z: 80}
+  - {x: 3.5, y: 1, z: 13.333}
+  - {x: 3.5, y: 1, z: 26.667}
+  - {x: 3.5, y: 1, z: 40}
+  - {x: 3.5, y: 1, z: 53.333}
+  - {x: 3.5, y: 1, z: 66.667}
+  - {x: 3.5, y: 1, z: 80}

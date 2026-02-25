@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3c9c0693fb4c00418b443f8a2b9bdb8, type: 2}
+  - {fileID: 2100000, guid: 3154393153befe344b0cae60e98bedb9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,7 +191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveForward
   positionSO: {fileID: 0}
+  nameOfHorse: 
   moveTime: 0.9
+  moveForwardBool: 0
 --- !u!114 &6509559920019973111
 MonoBehaviour:
   m_ObjectHideFlags: 0

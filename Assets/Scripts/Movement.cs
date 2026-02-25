@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
     {
         isMoving = true;
         moveForwardBool = false;
-        Vector3 targetPosition = positionSO.avaliblePositions[position];
+        Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, positionSO.avaliblePositions[position].z);
         Vector3 startPosition = transform.position;
         float elapsed = 0;
 
@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, targetPosition, t);
             yield return null;
         }
-        transform.position = positionSO.avaliblePositions[position];
+        transform.position = targetPosition;
         
         isMoving = false;
         position ++;
