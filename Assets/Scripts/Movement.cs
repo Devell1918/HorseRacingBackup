@@ -8,18 +8,15 @@ public class Movement : MonoBehaviour
     [SerializeField] private PositionsSO positionSO;
     [SerializeField] private string nameOfHorse;
     public PositionsSO PositionsSO { get { return positionSO; } set { positionSO = value; } }
-    public string NameOFHorse{ get { return nameOfHorse; } set { nameOfHorse = value; } }
+    public string NameOfHorse{ get { return nameOfHorse; } set { nameOfHorse = value; } }
 
     [SerializeField] float moveTime = 1;
     int position = 0;
 
     public bool moveForwardBool = false;
+    public bool scratched = false;
     private bool isMoving = false;
 
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
@@ -29,10 +26,15 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         
-        if (moveForwardBool & (position < positionSO.maxPositions & !isMoving))
+        if (moveForwardBool & (position < positionSO.maxPositions & !isMoving) & !scratched)
         {
             StartCoroutine(MoveForwardCoroutine());
             
+        }
+        else if (scratched & moveForwardBool)
+        {
+            Debug.Log("That horse is scratched");
+            moveForwardBool = false;
         }
     }
 

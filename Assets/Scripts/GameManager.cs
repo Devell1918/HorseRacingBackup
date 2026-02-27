@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Security.Cryptography;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,42 +10,90 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public List<PositionsSO> horsePositions = new List<PositionsSO>();
     [SerializeField] public List<GameObject> horses = new List<GameObject>();
+    [SerializeField] public List<GameObject> validHorses = new List<GameObject>();
+    [SerializeField] public List<GameObject> scratchedHorses = new List<GameObject>();
 
     private void Start()
     {
         SpawnHorses();
-        InvokeRepeating("RollDice", 1f, 1f);
+        StartCoroutine(ScratchCoroutine());
+
+        //InvokeRepeating("RollDice", 1f, 1f);
     }
-    public void SpawnHorses()
+    private void SpawnHorses()
     {
         for(int i = 0; i <= 10 ; i++)
         {
             GameObject newHorse = Instantiate(horsePrefab);
             
             horses.Add(newHorse);
+            validHorses.Add(newHorse);
 
             Movement newMovement = newHorse.GetComponent<Movement>();
             newMovement.PositionsSO = horsePositions[i];
 
             //name horse
             int horseNumber = i + 2;
-            newMovement.NameOFHorse = horseNumber.ToString();
+            newMovement.NameOfHorse = horseNumber.ToString();
 
 
         }
     }
 
-    public void RollDice() 
+    private void ScratchHorse(int scratchNumber)
     {
-        int die1 = RandomNumberGenerator.GetInt32(1, 7);
-        int die2 = RandomNumberGenerator.GetInt32(1, 7);
+        int die1 = RollDice();
+        int die2 = RollDice();
 
-        int horseRolledIndex = (die1 + die2) - 2;  //-2 is to account for their being no player 1 and starting at 0
+        int scratchedHorseIndex = (die1 + die2) - 2;
 
-        Movement newMovement = horses[horseRolledIndex].GetComponent<Movement>();
+        Scratch scratchOfHorse = horses[scratchedHorseIndex].GetComponent<Scratch>();
+        Movement movementOfScratchedHorse = horses[scratchedHorseIndex].GetComponent<Movement>();
+        movementOfScratchedHorse.scratched = true;
+        scratchOfHorse.ScratchHorse(scratchNumber); //this scratchHorse is of the Scratch Script
+
+    }
+
+    public int RollDice() 
+    {
+        int die = RandomNumberGenerator.GetInt32(1, 7);
+
+        return die;
+
+
+    }
+
+    private IEnumerator ScratchCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+
+        ScratchHorse(1);
+
+        yield return new WaitForSeconds(1);
+
+        ScratchHorse(2);
+
+        yield return new WaitForSeconds(1);
+
+        ScratchHorse(3);
+
+        yield return new WaitForSeconds(1);
+
+        ScratchHorse(4);
+
+        yield return new WaitForSeconds(1);
+
+        InvokeRepeating("MoveAHorse", 1, 1);
+    }
+
+    private void MoveAHorse()
+    {
+        int die1 = RollDice();
+        int die2 = RollDice();
+
+        int horseToMoveIndex = (die1 + die2) - 2;
+
+        Movement newMovement = horses[horseToMoveIndex].GetComponent<Movement>();
         newMovement.moveForwardBool = true;
-
-        Debug.Log(horseRolledIndex);
-        Debug.Log(newMovement.NameOFHorse);
     }
 }

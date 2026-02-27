@@ -853,6 +853,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 511c241b96111a7459a4d97161ef7a49, type: 2}
   - {fileID: 11400000, guid: 5235e4c67e016124c93f279d1654c84d, type: 2}
   horses: []
+  validHorses: []
+  scratchedHorses: []
 --- !u!1001 &1881379496
 PrefabInstance:
   m_ObjectHideFlags: 0
