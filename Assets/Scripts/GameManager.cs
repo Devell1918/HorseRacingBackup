@@ -1,30 +1,44 @@
-using UnityEngine;
-using System.Security.Cryptography;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject horsePrefab;
+    [Header("References (Fetched in Code)")]
+    [SerializeField] PlayerInput playerInput;
 
+    [Header("References")]
+    [SerializeField] GameObject horsePrefab;
+    [SerializeField] Transform horsesTransform;
+
+    [Header("Lists")]
     [SerializeField] public List<PositionsSO> horsePositions = new List<PositionsSO>();
     [SerializeField] public List<GameObject> horses = new List<GameObject>();
-    [SerializeField] public List<GameObject> validHorses = new List<GameObject>();
+    [SerializeField] private List<GameObject> validHorses = new List<GameObject>();
     [SerializeField] public List<GameObject> scratchedHorses = new List<GameObject>();
 
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
     private void Start()
     {
         SpawnHorses();
         StartCoroutine(ScratchCoroutine());
 
+        validHorses = new List<GameObject>(horses);
+
         //InvokeRepeating("RollDice", 1f, 1f);
+
     }
     private void SpawnHorses()
     {
         for(int i = 0; i <= 10 ; i++)
         {
-            GameObject newHorse = Instantiate(horsePrefab);
+            GameObject newHorse = Instantiate(horsePrefab, horsesTransform);
             
             horses.Add(newHorse);
             validHorses.Add(newHorse);
@@ -35,26 +49,45 @@ public class GameManager : MonoBehaviour
             //name horse
             int horseNumber = i + 2;
             newMovement.NameOfHorse = horseNumber.ToString();
+            newHorse.name = "Horse " + horseNumber.ToString();
 
 
         }
     }
 
-    private void ScratchHorse(int scratchNumber)
+    private void ScratchHorse(int scratchNumber)  //move to scratch?
     {
-        int die1 = RollDice();
-        int die2 = RollDice();
+        bool isValid = false;
+        int scratchedHorseIndex = -1;
 
-        int scratchedHorseIndex = (die1 + die2) - 2;
+        while (!isValid)
+        {
+            int die1 = RollDice();
+            int die2 = RollDice();                                      //change this out with my dice roll
+
+            scratchedHorseIndex = (die1 + die2) - 2;
+
+            if (!scratchedHorses.Contains(horses[scratchedHorseIndex]))
+            {
+                isValid = true;
+            }
+            else
+            {
+                Debug.Log("That Horse has already been scratched");
+            }
+
+        }
 
         Scratch scratchOfHorse = horses[scratchedHorseIndex].GetComponent<Scratch>();
         Movement movementOfScratchedHorse = horses[scratchedHorseIndex].GetComponent<Movement>();
         movementOfScratchedHorse.scratched = true;
         scratchOfHorse.ScratchHorse(scratchNumber); //this scratchHorse is of the Scratch Script
+        scratchedHorses.Add(horses[scratchedHorseIndex]);
+        validHorses.Remove(horses[scratchedHorseIndex]);
 
     }
 
-    public int RollDice() 
+    public int RollDice() //delete later
     {
         int die = RandomNumberGenerator.GetInt32(1, 7);
 
@@ -63,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private IEnumerator ScratchCoroutine()
+    private IEnumerator ScratchCoroutine() //rename or delete later
     {
         yield return new WaitForSeconds(1);
 
@@ -83,17 +116,18 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        InvokeRepeating("MoveAHorse", 1, 1);
+        playerInput.controlsEnabled = true;
     }
 
-    private void MoveAHorse()
+    public void MoveAHorse(int dieAdded)
     {
-        int die1 = RollDice();
-        int die2 = RollDice();
 
-        int horseToMoveIndex = (die1 + die2) - 2;
+
+        int horseToMoveIndex = dieAdded - 2;
 
         Movement newMovement = horses[horseToMoveIndex].GetComponent<Movement>();
-        newMovement.moveForwardBool = true;
+        newMovement.CommandHorseForward();
     }
+
+
 }

@@ -5,38 +5,35 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    [Header("References (Fetched in Code")]
+    [SerializeField] AudioSource audioSource;
+
+    [Header("References")]
     [SerializeField] private PositionsSO positionSO;
+
+    [Header("Variables")]
     [SerializeField] private string nameOfHorse;
+
+
     public PositionsSO PositionsSO { get { return positionSO; } set { positionSO = value; } }
     public string NameOfHorse{ get { return nameOfHorse; } set { nameOfHorse = value; } }
 
-    [SerializeField] float moveTime = 1;
+    [SerializeField] float moveSpeed = 1;
     int position = 0;
 
-    public bool moveForwardBool = false;
-    public bool scratched = false;
+    public bool scratched = false;                  //set some properties
     private bool isMoving = false;
 
-
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Start()
     {
         InitializePosition();
     }
 
-    private void Update()
-    {
-        
-        if (moveForwardBool & (position < positionSO.maxPositions & !isMoving) & !scratched)
-        {
-            StartCoroutine(MoveForwardCoroutine());
-            
-        }
-        else if (scratched & moveForwardBool)
-        {
-            Debug.Log("That horse is scratched");
-            moveForwardBool = false;
-        }
-    }
+
 
     public void InitializePosition()
     {
@@ -45,33 +42,48 @@ public class Movement : MonoBehaviour
     public IEnumerator MoveForwardCoroutine()
     {
         isMoving = true;
-        moveForwardBool = false;
+
         Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, positionSO.avaliblePositions[position].z);
         Vector3 startPosition = transform.position;
-        float elapsed = 0;
 
+        audioSource.Play();
 
-        while (elapsed <= moveTime) 
+        while (transform.position.z < targetPosition.z) 
         {
-            float t = elapsed / moveTime;
-            elapsed += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            transform.position += new Vector3(0, 0, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPosition;
+        audioSource.Stop();
         
         isMoving = false;
         position ++;
 
     }
 
-    private void OnContinue(InputValue inputValue)
+    public void CommandHorseForward()
     {
-        Debug.Log("continue");
-        moveForwardBool = true;
+        if ( (position < positionSO.maxPositions & !isMoving) & !scratched)
+        {
+            StartCoroutine(MoveForwardCoroutine());
+            
+        }
+        else if (scratched)
+        {
+            Debug.Log("That Horse is Scratched, Command Denied");
+        }
+        else if (isMoving)
+        {
+            Debug.Log("That Horse is Moving, Command Denied");
+        }
+        else if (position >= positionSO.maxPositions)
+        {
+            Debug.Log("That Horse has Finished!");
+        }
 
-        
     }
+
+
 
 
 }
