@@ -33,7 +33,7 @@ public class NumberReader : MonoBehaviour
     }
     private void AssignDie()
     {
-            die.landedOn = number;
+            die.UpdateDie(number);
             dieStopped = true;
             Debug.Log(number);
 

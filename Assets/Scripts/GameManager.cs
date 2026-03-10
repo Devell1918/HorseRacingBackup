@@ -10,15 +10,26 @@ public class GameManager : MonoBehaviour
     [Header("References (Fetched in Code)")]
     [SerializeField] PlayerInput playerInput;
 
+
     [Header("References")]
     [SerializeField] GameObject horsePrefab;
     [SerializeField] Transform horsesTransform;
+    [SerializeField] GameStatsSO gameStatsSO;
+    [SerializeField] Transform die1Transform;
+    [SerializeField] Transform die2Transform;
+    [SerializeField] private Rigidbody die1rb;
+    [SerializeField] private Rigidbody die2rb;
+
 
     [Header("Lists")]
     [SerializeField] public List<PositionsSO> horsePositions = new List<PositionsSO>();
     [SerializeField] public List<GameObject> horses = new List<GameObject>();
     [SerializeField] private List<GameObject> validHorses = new List<GameObject>();
     [SerializeField] public List<GameObject> scratchedHorses = new List<GameObject>();
+
+    [Header("Variables")]
+    [SerializeField] private int currentDie1Number;
+    [SerializeField] private int currentDie2Number;
 
     private void Awake()
     {
@@ -34,6 +45,7 @@ public class GameManager : MonoBehaviour
         //InvokeRepeating("RollDice", 1f, 1f);
 
     }
+
     private void SpawnHorses()
     {
         for(int i = 0; i <= 10 ; i++)
@@ -129,5 +141,26 @@ public class GameManager : MonoBehaviour
         newMovement.CommandHorseForward();
     }
 
+    //public void ResetDie()
+    //{
+    //    currentDie1Number = 0;
+    //    currentDie2Number = 0;
 
+    //    die[0].transform.position = die1SpawnPos;
+    //    die[1].transform.position = die2SpawnPos;
+    //}
+
+    public void UpdateCurrentDieNumber(int number)
+    {
+        if (currentDie1Number == 0) { currentDie1Number = number; }
+        else if (currentDie1Number != 0) { currentDie2Number = number; }
+    }
+
+    public void ResetDie()
+    {
+        die1rb.useGravity = false;
+        die2rb.useGravity = false;
+        die1Transform.position = gameStatsSO.die1SpawnPos;
+        die2Transform.position = gameStatsSO.die2SpawnPos;
+    }
 }

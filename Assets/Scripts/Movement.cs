@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PositionsSO positionSO;
+    [SerializeField] private GameStatsSO gameStatsSO;
 
     [Header("Variables")]
     [SerializeField] private string nameOfHorse;

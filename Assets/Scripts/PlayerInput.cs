@@ -11,9 +11,11 @@ public class PlayerInput : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody die1rb;
     [SerializeField] private Rigidbody die2rb;
+    [SerializeField] GameStatsSO gameStatsSO;
 
     public bool controlsEnabled = true;
     public bool dropped = false;
+
 
     private void Awake()
     {
@@ -27,9 +29,16 @@ public class PlayerInput : MonoBehaviour
         Debug.Log("You took a turn");
     }
 
+    private void OnReset(InputValue inputValue) //debugging
+    {
+        if(!controlsEnabled) { return; }
+        gameManager.ResetDie();
+
+        Debug.Log("Reset Pressed");
+    }
+
     private void DropDie()
     {
-        dropped = true;
         die1rb.useGravity = true;
         die2rb.useGravity = true;
     }
