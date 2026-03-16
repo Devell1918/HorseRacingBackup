@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Die : MonoBehaviour
@@ -5,8 +6,16 @@ public class Die : MonoBehaviour
     [Header("References")]
     [SerializeField] GameManager gameManager;
 
-    public int landedOn = 0;
+    private Rigidbody rb;
 
+    private int landedOn = 0;
+
+    public bool IsStopped { get; set; }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -16,6 +25,13 @@ public class Die : MonoBehaviour
     {
         landedOn = number;
         gameManager.UpdateCurrentDieNumber(number);
+    }
+
+
+
+    public void ResetLandedOn()
+    {
+        landedOn = 0;
     }
 
 }

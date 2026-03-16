@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class NumberReader : MonoBehaviour
 {
-    
 
+    [SerializeField] int number;
 
     [Header("References (Fetched in Code)")]
     Rigidbody rb;
@@ -12,9 +12,9 @@ public class NumberReader : MonoBehaviour
 
 
 
-    [SerializeField] int number;
+
     float stopThreshold = 0.1f;
-    private bool dieStopped = false;
+
 
     private void Awake()
     {
@@ -25,17 +25,12 @@ public class NumberReader : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (rb.angularVelocity.sqrMagnitude < stopThreshold & rb.linearVelocity.sqrMagnitude < stopThreshold & other.CompareTag("Ground") & !dieStopped)
+        if (rb.angularVelocity.sqrMagnitude < stopThreshold & rb.linearVelocity.sqrMagnitude < stopThreshold & other.CompareTag("Ground") & !die.IsStopped)
         {
-            AssignDie();
+            die.UpdateDie(number);
+            die.IsStopped = true;
         }
         
     }
-    private void AssignDie()
-    {
-            die.UpdateDie(number);
-            dieStopped = true;
-            Debug.Log(number);
 
-    }
 }

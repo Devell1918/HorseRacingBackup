@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform die2Transform;
     [SerializeField] private Rigidbody die1rb;
     [SerializeField] private Rigidbody die2rb;
+    //put in numberr reader[SerializeField] private 
+    private Die die1Script;
+    private Die die2Script;
+
 
 
     [Header("Lists")]
@@ -37,14 +41,20 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        //grab reference
+        die1Script = die1Transform.GetComponent<Die>();
+        die2Script = die2Transform.GetComponent<Die>();
+
+
         SpawnHorses();
-        StartCoroutine(ScratchCoroutine());
+        //StartCoroutine(ScratchCoroutine());
 
         validHorses = new List<GameObject>(horses);
 
-        //InvokeRepeating("RollDice", 1f, 1f);
+
 
     }
+
 
     private void SpawnHorses()
     {
@@ -74,8 +84,8 @@ public class GameManager : MonoBehaviour
 
         while (!isValid)
         {
-            int die1 = RollDice();
-            int die2 = RollDice();                                      //change this out with my dice roll
+            int die1 = currentDie1Number;
+            int die2 = currentDie2Number;                                     
 
             scratchedHorseIndex = (die1 + die2) - 2;
 
@@ -99,14 +109,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public int RollDice() //delete later
-    {
-        int die = RandomNumberGenerator.GetInt32(1, 7);
-
-        return die;
-
-
-    }
 
     private IEnumerator ScratchCoroutine() //rename or delete later
     {
@@ -141,26 +143,42 @@ public class GameManager : MonoBehaviour
         newMovement.CommandHorseForward();
     }
 
-    //public void ResetDie()
-    //{
-    //    currentDie1Number = 0;
-    //    currentDie2Number = 0;
 
-    //    die[0].transform.position = die1SpawnPos;
-    //    die[1].transform.position = die2SpawnPos;
-    //}
 
     public void UpdateCurrentDieNumber(int number)
     {
+        Debug.Log("you rolled a " + number); 
         if (currentDie1Number == 0) { currentDie1Number = number; }
         else if (currentDie1Number != 0) { currentDie2Number = number; }
     }
 
     public void ResetDie()
     {
+
+        //Reset Numbers
+        currentDie1Number = 0;
+        currentDie2Number = 0;
+        die1Script.ResetLandedOn();
+        die2Script.ResetLandedOn();
+
+
+        //initial position
+        die1Script.IsStopped = false;
+        die2Script.IsStopped = false;
         die1rb.useGravity = false;
         die2rb.useGravity = false;
         die1Transform.position = gameStatsSO.die1SpawnPos;
         die2Transform.position = gameStatsSO.die2SpawnPos;
+
+        //rotate so they aren't the same
+
+        die1Transform.Rotate(Vector3.forward);
+        die2Transform.Rotate(Vector3.up);
+    }
+
+    public void DropDie()
+    {
+        die1rb.useGravity = true;
+        die2rb.useGravity = true;
     }
 }
