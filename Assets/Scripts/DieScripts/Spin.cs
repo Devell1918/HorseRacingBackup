@@ -21,7 +21,7 @@ public class Spin : MonoBehaviour
 
     private void Start()
     {
-        playerInput = FindFirstObjectByType<PlayerInput>();
+        playerInput = FindAnyObjectByType<PlayerInput>();
     }
 
     private void FixedUpdate()

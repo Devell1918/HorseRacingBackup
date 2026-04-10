@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform die2Transform;
     [SerializeField] private Rigidbody die1rb;
     [SerializeField] private Rigidbody die2rb;
+    [SerializeField] private Messages messages;
     //put in numberr reader[SerializeField] private 
     private Die die1Script;
     private Die die2Script;
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     private void ScratchHorse(int scratchNumber)  //move to scratch?
     {
+        if (scratchNumber > 4) { Debug.Log("All Horses Scratched, or incorrect calling"); return; }
         bool isValid = false;
         int scratchedHorseIndex = -1;
 
@@ -107,28 +109,39 @@ public class GameManager : MonoBehaviour
         scratchedHorses.Add(horses[scratchedHorseIndex]);
         validHorses.Remove(horses[scratchedHorseIndex]);
 
+
+        if (scratchNumber == 1)             //updates text
+        {
+            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The First Horse Scratched");
+        }
+        else if (scratchNumber == 2) 
+        {
+            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Second Horse Scratched");
+        }
+        else if (scratchNumber == 3)
+        {
+            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Third Horse Scratched");
+        }
+        else if (scratchNumber == 4)
+        {
+            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Fourth Horse Scratched");
+        }
+
+    }
+
+    public void StartScratch()
+    {
+        StartCoroutine(ScratchCoroutine());
     }
 
 
     private IEnumerator ScratchCoroutine() //rename or delete later
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.8f);
 
         ScratchHorse(1);
+        
 
-        yield return new WaitForSeconds(1);
-
-        ScratchHorse(2);
-
-        yield return new WaitForSeconds(1);
-
-        ScratchHorse(3);
-
-        yield return new WaitForSeconds(1);
-
-        ScratchHorse(4);
-
-        yield return new WaitForSeconds(1);
 
         playerInput.controlsEnabled = true;
     }

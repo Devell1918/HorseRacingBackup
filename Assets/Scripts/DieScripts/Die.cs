@@ -10,6 +10,7 @@ public class Die : MonoBehaviour
 
     private int landedOn = 0;
 
+    public int LandedOn { get {return landedOn;} private set { landedOn = value; } }
     public bool IsStopped { get; set; }
 
     private void Awake()

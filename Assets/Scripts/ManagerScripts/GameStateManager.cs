@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-
-    [SerializeField] public CinemachineCamera cinemachineCamera;
+    [SerializeField] public GameManager gameManager;
+    [SerializeField] public CinemachineCamera dieRollCam;
+    [SerializeField] public CinemachineCamera overheadCam;
     [SerializeField] public CameraPositionsSO cameraPositions;
 
     [SerializeField] private Die die1Script;
     [SerializeField] private Die die2Script;
 
     public bool dieStopped { get; set; }
+    public bool allHorsesScratched { get; set; }
 
     
     private GameStateBase currentState;
@@ -19,7 +21,7 @@ public class GameStateManager : MonoBehaviour
     public MovingHorseState movingHorseState = new MovingHorseState();
     private void Start()
     {
-        
+        gameManager = FindAnyObjectByType<GameManager>();
         currentState = rollingDieState;
         currentState.EnterState(this);
     }
