@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 4946336718086966845}
   - component: {fileID: 4576090437966326761}
   - component: {fileID: 7886440561652027825}
+  - component: {fileID: -4666057847840103182}
+  - component: {fileID: 2652958680040219704}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -81,9 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveForward
   audioSource: {fileID: 0}
   positionSO: {fileID: 0}
+  gameStatsSO: {fileID: 0}
+  gameManager: {fileID: 0}
   nameOfHorse: 
   moveSpeed: 5
-  moveForwardBool: 0
   scratched: 0
 --- !u!114 &4576090437966326761
 MonoBehaviour:
@@ -194,6 +197,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &-4666057847840103182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607884999048592443}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.60834134, y: 1.4191418, z: 1.3763405}
+  m_Center: {x: 0.0026143193, y: -0.45226312, z: -0.18817043}
+--- !u!65 &2652958680040219704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607884999048592443}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3466878, y: 0.299016, z: 0.64708745}
+  m_Center: {x: -0.011247702, y: 0.29760036, z: 0.7580232}
 --- !u!1001 &7896278174461669241
 PrefabInstance:
   m_ObjectHideFlags: 0

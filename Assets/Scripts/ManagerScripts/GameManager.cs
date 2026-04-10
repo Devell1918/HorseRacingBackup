@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("References")]
+    [SerializeField] GameStateManager gameStateManager;
     [SerializeField] GameObject horsePrefab;
     [SerializeField] Transform horsesTransform;
     [SerializeField] GameStatsSO gameStatsSO;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform die2Transform;
     [SerializeField] private Rigidbody die1rb;
     [SerializeField] private Rigidbody die2rb;
-    [SerializeField] private Messages messages;
+    [SerializeField] public Messages messages;
     //put in numberr reader[SerializeField] private 
     private Die die1Script;
     private Die die2Script;
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int currentDie1Number;
     [SerializeField] private int currentDie2Number;
 
+    private int horsesScratched = 0;
+    public int DieAdded { get; private set; }
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //grab reference
+        gameStateManager = FindAnyObjectByType<GameStateManager>();
         die1Script = die1Transform.GetComponent<Die>();
         die2Script = die2Transform.GetComponent<Die>();
 
@@ -78,53 +83,58 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ScratchHorse(int scratchNumber)  //move to scratch?
+    private void ScratchHorse()  //move to scratch?
     {
-        if (scratchNumber > 4) { Debug.Log("All Horses Scratched, or incorrect calling"); return; }
-        bool isValid = false;
+
+        horsesScratched ++;
+
+        if (horsesScratched > 4 ) { Debug.Log("All Horses Scratched"); return; }
+
         int scratchedHorseIndex = -1;
 
-        while (!isValid)
+
+        int die1 = currentDie1Number;
+        int die2 = currentDie2Number;
+
+        scratchedHorseIndex = (die1 + die2) - 2;
+
+        if (scratchedHorses.Contains(horses[scratchedHorseIndex]))
         {
-            int die1 = currentDie1Number;
-            int die2 = currentDie2Number;                                     
-
-            scratchedHorseIndex = (die1 + die2) - 2;
-
-            if (!scratchedHorses.Contains(horses[scratchedHorseIndex]))
-            {
-                isValid = true;
-            }
-            else
-            {
-                Debug.Log("That Horse has already been scratched");
-            }
-
+            Debug.Log("That Horse has already been scratched");
+            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " has already been scratched");
+            playerInput.EnableControls();
+            // subtract horsesScratched
+            horsesScratched --;
+            return;
         }
+
+
+        
 
         Scratch scratchOfHorse = horses[scratchedHorseIndex].GetComponent<Scratch>();
         Movement movementOfScratchedHorse = horses[scratchedHorseIndex].GetComponent<Movement>();
         movementOfScratchedHorse.scratched = true;
-        scratchOfHorse.ScratchHorse(scratchNumber); //this scratchHorse is of the Scratch Script
+        scratchOfHorse.ScratchHorse(horsesScratched); //this scratchHorse is of the Scratch Script
         scratchedHorses.Add(horses[scratchedHorseIndex]);
         validHorses.Remove(horses[scratchedHorseIndex]);
 
 
-        if (scratchNumber == 1)             //updates text
+        if (horsesScratched == 1)             //updates text
         {
             messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The First Horse Scratched");
         }
-        else if (scratchNumber == 2) 
+        else if (horsesScratched == 2) 
         {
             messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Second Horse Scratched");
         }
-        else if (scratchNumber == 3)
+        else if (horsesScratched == 3)
         {
             messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Third Horse Scratched");
         }
-        else if (scratchNumber == 4)
+        else if (horsesScratched == 4)
         {
             messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Fourth Horse Scratched");
+            gameStateManager.AllHorsesScratched();
         }
 
     }
@@ -139,11 +149,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.8f);
 
-        ScratchHorse(1);
+        ScratchHorse();
         
 
 
-        playerInput.controlsEnabled = true;
+        playerInput.EnableControls();
     }
 
     public void MoveAHorse(int dieAdded)
@@ -163,11 +173,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("you rolled a " + number); 
         if (currentDie1Number == 0) { currentDie1Number = number; }
         else if (currentDie1Number != 0) { currentDie2Number = number; }
+
+        DieAdded = currentDie1Number + currentDie2Number;
     }
 
     public void ResetDie()
     {
-
+        if (die1Script == null || die2Script == null) { return; }
         //Reset Numbers
         currentDie1Number = 0;
         currentDie2Number = 0;
@@ -180,6 +192,8 @@ public class GameManager : MonoBehaviour
         die2Script.IsStopped = false;
         die1rb.useGravity = false;
         die2rb.useGravity = false;
+        die1rb.GetComponent<Spin>().enabled = true;
+        die2rb.GetComponent<Spin>().enabled = true;
         die1Transform.position = gameStatsSO.die1SpawnPos;
         die2Transform.position = gameStatsSO.die2SpawnPos;
 
@@ -193,5 +207,13 @@ public class GameManager : MonoBehaviour
     {
         die1rb.useGravity = true;
         die2rb.useGravity = true;
+
+        die1rb.GetComponent<Spin>().enabled = false;
+        die2rb.GetComponent<Spin>().enabled = false;
+    }
+
+    public void TimeToChange()
+    {
+        gameStateManager.TimeToChange();
     }
 }

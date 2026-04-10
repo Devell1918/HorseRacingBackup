@@ -7,8 +7,8 @@ public class GameStatsSO : ScriptableObject
 
 
 
-    [SerializeField] public Vector3 die1SpawnPos = new Vector3(0, 4, -7.5f);
-    [SerializeField] public Vector3 die2SpawnPos = new Vector3(0, 4, 9);
+    [SerializeField] public Vector3 die1SpawnPos = new Vector3(0, 2, 9f);
+    [SerializeField] public Vector3 die2SpawnPos = new Vector3(0, 6, 9);
 
 
 

@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [Header("References")]
     [SerializeField] private PositionsSO positionSO;
     [SerializeField] private GameStatsSO gameStatsSO;
+    [SerializeField] private GameManager gameManager;
 
     [Header("Variables")]
     [SerializeField] private string nameOfHorse;
@@ -31,6 +32,7 @@ public class Movement : MonoBehaviour
     }
     private void Start()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
         InitializePosition();
     }
 
@@ -56,7 +58,8 @@ public class Movement : MonoBehaviour
         }
         transform.position = targetPosition;
         audioSource.Stop();
-        
+
+        gameManager.TimeToChange();
         isMoving = false;
         position ++;
 
@@ -71,7 +74,9 @@ public class Movement : MonoBehaviour
         }
         else if (scratched)
         {
+            gameManager.messages.SetMessage("That Horse is Scratched, Command Denied");
             Debug.Log("That Horse is Scratched, Command Denied");
+            gameManager.TimeToChange();
         }
         else if (isMoving)
         {

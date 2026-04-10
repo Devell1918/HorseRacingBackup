@@ -7,7 +7,6 @@ public class Spin : MonoBehaviour
     [SerializeField] float minRotationSpeed;
 
     [Header("Dependencies (Fetched in Code)" )]
-    [SerializeField] PlayerInput playerInput;
 
     Rigidbody rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,18 +18,10 @@ public class Spin : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        playerInput = FindAnyObjectByType<PlayerInput>();
-    }
 
     private void FixedUpdate()
     {
-        if (!playerInput.dropped)
-        {
-            SpinDie();
-
-        }
+        SpinDie();
     }
     private void SpinDie()
     {

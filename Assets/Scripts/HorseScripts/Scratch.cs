@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Scratch : MonoBehaviour
 {
-    private float scratchPosition1 = -3;
-    private float scratchPosition2 = -6;
+    private float scratchPosition1 = -4;
+    private float scratchPosition2 = -6.5f;
     private float scratchPosition3 = -9;
-    private float scratchPosition4 = -12;
+    private float scratchPosition4 = -11.5f;
 
 
     public void ScratchHorse(int positionInput)
