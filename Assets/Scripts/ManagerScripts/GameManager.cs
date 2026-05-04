@@ -158,8 +158,6 @@ public class GameManager : MonoBehaviour
 
     public void MoveAHorse(int dieAdded)
     {
-
-
         int horseToMoveIndex = dieAdded - 2;
 
         Movement newMovement = horses[horseToMoveIndex].GetComponent<Movement>();
@@ -212,8 +210,13 @@ public class GameManager : MonoBehaviour
         die2rb.GetComponent<Spin>().enabled = false;
     }
 
-    public void TimeToChange()
+    public void ScratchedHorseAlert()
     {
-        gameStateManager.TimeToChange();
+        gameStateManager.ScratchedHorseAlert();
+    }
+
+    public void HorseStoppedMovingAlert()
+    {
+        gameStateManager.HorseStoppedMovingAlert();
     }
 }

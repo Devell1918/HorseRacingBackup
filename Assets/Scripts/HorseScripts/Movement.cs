@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
         transform.position = targetPosition;
         audioSource.Stop();
 
-        gameManager.TimeToChange();
+        gameManager.HorseStoppedMovingAlert();
         isMoving = false;
         position ++;
 
@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
         {
             gameManager.messages.SetMessage("That Horse is Scratched, Command Denied");
             Debug.Log("That Horse is Scratched, Command Denied");
-            gameManager.TimeToChange();
+            gameManager.ScratchedHorseAlert();
         }
         else if (isMoving)
         {

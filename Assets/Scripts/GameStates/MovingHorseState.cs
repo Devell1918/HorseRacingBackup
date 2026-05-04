@@ -5,6 +5,7 @@ public class MovingHorseState : GameStateBase
 {
     public override void EnterState(GameStateManager gamestateManager) 
     {
+        gamestateManager.playerInput.DisableControls();
         Debug.Log("Entered move horse State");
         gamestateManager.overheadCam.gameObject.SetActive(true);
         gamestateManager.gameManager.MoveAHorse(gamestateManager.gameManager.DieAdded);
@@ -12,12 +13,17 @@ public class MovingHorseState : GameStateBase
            
     public override void UpdateState(GameStateManager gamestateManager) 
     {
-        if (gamestateManager.Change)
+        if (gamestateManager.PlayerRolledScratched)
         {
             gamestateManager.overheadCam.gameObject.SetActive(false);
-            gamestateManager.TimeToStay();
-            gamestateManager.SwitchState(gamestateManager.rollingDieState);
+            gamestateManager.ScratchedHorseAlertReset();
+            gamestateManager.SwitchState(gamestateManager.scratchHorseState);
             
+        } else if (gamestateManager.HorseStoppedMoving)
+        {
+            gamestateManager.ResetHorseStoppedMovingAlert();
+            gamestateManager.overheadCam.gameObject.SetActive(false);
+            gamestateManager.SwitchState(gamestateManager.rollingDieState);
         }
     }
 

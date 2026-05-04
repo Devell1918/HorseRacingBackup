@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class OpeningState : GameStateBase
+public class PlayerRolledAScratchedHorseState : GameStateBase
 {
     public override void EnterState(GameStateManager gamestateManager)
     {
-        Debug.Log("Entered Opening State");
-
+        //find a way to get the horse number and which scrath postion he is in into the message
+        gamestateManager.messages.SetMessage("That Horse is Scratched! Pay in");
     }
 
     public override void UpdateState(GameStateManager gamestateManager)
     {
-        if (gamestateManager.PlayerInputed)
+        if (gamestateManager.playerInput)
         {
-            gamestateManager.sideCamera.gameObject.SetActive(false);
             gamestateManager.SwitchState(gamestateManager.rollingDieState);
         }
-        
     }
 
 }

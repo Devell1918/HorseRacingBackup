@@ -8,7 +8,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] public GameManager gameManager;
     [SerializeField] public CinemachineCamera dieRollCam;
     [SerializeField] public CinemachineCamera overheadCam;
-    [SerializeField] public CameraPositionsSO cameraPositions;
+    [SerializeField] public CinemachineCamera sideCamera;
 
     [SerializeField] private Die die1Script;
     [SerializeField] private Die die2Script;
@@ -18,10 +18,12 @@ public class GameStateManager : MonoBehaviour
     public bool dieStopped { get; set; }
     public bool allHorsesScratched { get; set; }
 
-    public bool Change { get; private set; }
+    public bool PlayerRolledScratched { get; private set; }
+    public bool HorseStoppedMoving { get; private set; }
 
-    
+
     public GameStateBase currentState;
+    public OpeningState openState = new OpeningState();
     public RollingDieState rollingDieState = new RollingDieState();
     public ScratchHorseState scratchHorseState = new ScratchHorseState();
     public MovingHorseState movingHorseState = new MovingHorseState();
@@ -30,7 +32,7 @@ public class GameStateManager : MonoBehaviour
         playerInput = FindAnyObjectByType<PlayerInput>();
         gameManager = FindAnyObjectByType<GameManager>();
         messages = FindAnyObjectByType<Messages>();
-        currentState = rollingDieState;
+        currentState = openState;
         currentState.EnterState(this);
     }
 
@@ -61,13 +63,23 @@ public class GameStateManager : MonoBehaviour
         allHorsesScratched = true;
     }
 
-    public void TimeToChange()
+    public void ScratchedHorseAlert()
     {
-        Change = true;
+        PlayerRolledScratched = true;
     }
 
-    public void TimeToStay()
+    public void ScratchedHorseAlertReset()
     {
-        Change = false;
+        PlayerRolledScratched = false;
+    }
+
+    public void HorseStoppedMovingAlert()
+    {
+        HorseStoppedMoving = true;
+    }
+
+    public void ResetHorseStoppedMovingAlert()
+    {
+        HorseStoppedMoving = false;
     }
 }

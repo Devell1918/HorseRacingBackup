@@ -5,6 +5,8 @@ public class RollingDieState : GameStateBase
 {
     public override void EnterState(GameStateManager gamestateManager)
     {
+        
+        gamestateManager.dieRollCam.gameObject.SetActive(true);
         gamestateManager.ResetPlayerInputed();
         gamestateManager.playerInput.EnableControls();
         gamestateManager.messages.SetMessage("");
