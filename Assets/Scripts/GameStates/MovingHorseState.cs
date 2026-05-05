@@ -21,6 +21,10 @@ public class MovingHorseState : GameStateBase
             
         } else if (gamestateManager.HorseStoppedMoving)
         {
+            if (gamestateManager.victoryAchieved)
+            {
+                gamestateManager.SwitchState(gamestateManager.victoryState);
+            }
             gamestateManager.ResetHorseStoppedMovingAlert();
             gamestateManager.overheadCam.gameObject.SetActive(false);
             gamestateManager.SwitchState(gamestateManager.rollingDieState);

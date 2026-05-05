@@ -219,4 +219,9 @@ public class GameManager : MonoBehaviour
     {
         gameStateManager.HorseStoppedMovingAlert();
     }
+
+    public void TriggerVictory()
+    {
+        gameStateManager.TriggerVictory();
+    }
 }

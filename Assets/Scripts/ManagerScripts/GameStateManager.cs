@@ -13,6 +13,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Die die1Script;
     [SerializeField] private Die die2Script;
 
+    //workinprogress
+    public bool victoryAchieved;
+
     public bool PlayerInputed { get; private set; }
 
     public bool dieStopped { get; set; }
@@ -27,6 +30,7 @@ public class GameStateManager : MonoBehaviour
     public RollingDieState rollingDieState = new RollingDieState();
     public ScratchHorseState scratchHorseState = new ScratchHorseState();
     public MovingHorseState movingHorseState = new MovingHorseState();
+    public VictoryState victoryState = new VictoryState();
     private void Start()
     {
         playerInput = FindAnyObjectByType<PlayerInput>();
@@ -81,5 +85,10 @@ public class GameStateManager : MonoBehaviour
     public void ResetHorseStoppedMovingAlert()
     {
         HorseStoppedMoving = false;
+    }
+
+    public void TriggerVictory()
+    {
+        victoryAchieved = true;
     }
 }

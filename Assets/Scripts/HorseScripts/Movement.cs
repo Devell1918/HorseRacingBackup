@@ -72,6 +72,10 @@ public class Movement : MonoBehaviour
             StartCoroutine(MoveForwardCoroutine());
             
         }
+        if (position == positionSO.maxPositions -1 )
+        {
+            TriggerVictory();
+        }
         else if (scratched)
         {
             gameManager.messages.SetMessage("That Horse is Scratched, Command Denied");
@@ -89,7 +93,10 @@ public class Movement : MonoBehaviour
 
     }
 
-
+    public void TriggerVictory()
+    {
+       gameManager.TriggerVictory();
+    }
 
 
 }
