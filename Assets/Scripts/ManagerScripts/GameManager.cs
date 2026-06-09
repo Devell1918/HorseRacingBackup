@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         die2Script = die2Transform.GetComponent<Die>();
 
 
-        SpawnHorses();
+        //SpawnHorses();
         //StartCoroutine(ScratchCoroutine());
 
         validHorses = new List<GameObject>(horses);
@@ -97,11 +97,13 @@ public class GameManager : MonoBehaviour
         int die2 = currentDie2Number;
 
         scratchedHorseIndex = (die1 + die2) - 2;
+        Debug.Log(scratchedHorseIndex);
+        Movement movementOfScratchedHorse = horses[scratchedHorseIndex].GetComponent<Movement>();
 
-        if (scratchedHorses.Contains(horses[scratchedHorseIndex]))
+        if (movementOfScratchedHorse.scratched)
         {
             Debug.Log("That Horse has already been scratched");
-            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " has already been scratched");
+            messages.SetMessage(("Horse " + (horses[scratchedHorseIndex].name)) + " has already been scratched");
             playerInput.EnableControls();
             // subtract horsesScratched
             horsesScratched --;
@@ -112,7 +114,6 @@ public class GameManager : MonoBehaviour
         
 
         Scratch scratchOfHorse = horses[scratchedHorseIndex].GetComponent<Scratch>();
-        Movement movementOfScratchedHorse = horses[scratchedHorseIndex].GetComponent<Movement>();
         movementOfScratchedHorse.scratched = true;
         scratchOfHorse.ScratchHorse(horsesScratched); //this scratchHorse is of the Scratch Script
         scratchedHorses.Add(horses[scratchedHorseIndex]);
@@ -121,19 +122,19 @@ public class GameManager : MonoBehaviour
 
         if (horsesScratched == 1)             //updates text
         {
-            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The First Horse Scratched");
+            messages.SetMessage((horses[scratchedHorseIndex].name) + " Is The First Horse Scratched");
         }
         else if (horsesScratched == 2) 
         {
-            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Second Horse Scratched");
+            messages.SetMessage((horses[scratchedHorseIndex].name) + " Is The Second Horse Scratched");
         }
         else if (horsesScratched == 3)
         {
-            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Third Horse Scratched");
+            messages.SetMessage((horses[scratchedHorseIndex].name) + " Is The Third Horse Scratched");
         }
         else if (horsesScratched == 4)
         {
-            messages.SetMessage("Horse " + (scratchedHorseIndex + 2) + " Is The Fourth Horse Scratched");
+            messages.SetMessage((horses[scratchedHorseIndex].name) + " Is The Fourth Horse Scratched");
             gameStateManager.AllHorsesScratched();
         }
 
