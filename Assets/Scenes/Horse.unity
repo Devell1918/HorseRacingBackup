@@ -1028,7 +1028,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 616802f9971a5e34cad6d62195f7f410, type: 2}
     - target: {fileID: 5607884999048592443, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: m_Name
-      value: Horse 10
+      value: FeFe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3015,6 +3015,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3408477508770349464, guid: 97eae0adece212941b0f4a5e75c7f851, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3690128763884653866, guid: 97eae0adece212941b0f4a5e75c7f851, type: 3}
       propertyPath: m_Name
       value: Die 2
@@ -3072,6 +3076,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5280492491024917067, guid: 8a6c58afb3d5df34e8ea77e77790e070, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6138603388210376441, guid: 8a6c58afb3d5df34e8ea77e77790e070, type: 3}
       propertyPath: m_Name
       value: Die 1

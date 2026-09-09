@@ -25,9 +25,13 @@ public class MovingHorseState : GameStateBase
             {
                 gamestateManager.SwitchState(gamestateManager.victoryState);
             }
-            gamestateManager.ResetHorseStoppedMovingAlert();
-            gamestateManager.overheadCam.gameObject.SetActive(false);
-            gamestateManager.SwitchState(gamestateManager.rollingDieState);
+            else
+            {
+                gamestateManager.ResetHorseStoppedMovingAlert();
+                gamestateManager.overheadCam.gameObject.SetActive(false);
+                gamestateManager.SwitchState(gamestateManager.rollingDieState);
+
+            }
         }
     }
 

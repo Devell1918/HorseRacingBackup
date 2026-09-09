@@ -43,6 +43,7 @@ public class GameStateManager : MonoBehaviour
     private void Update()
     {
         if (die1Script.IsStopped && die2Script.IsStopped) { dieStopped = true; }
+
         currentState.UpdateState(this);
     }
 

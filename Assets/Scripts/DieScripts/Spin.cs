@@ -6,6 +6,9 @@ public class Spin : MonoBehaviour
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float minRotationSpeed;
 
+    [Header("Debug")]
+    [SerializeField] bool spin = true;
+
     [Header("Dependencies (Fetched in Code)" )]
 
     Rigidbody rb;
@@ -20,8 +23,11 @@ public class Spin : MonoBehaviour
 
 
     private void FixedUpdate()
-    {
-        SpinDie();
+    {   
+        if ( spin)
+        {
+            SpinDie();
+        }
     }
     private void SpinDie()
     {
