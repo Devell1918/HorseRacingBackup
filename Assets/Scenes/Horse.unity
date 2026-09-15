@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gunner
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 70b0549810b9406488c58ab3bb5040cb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -464,6 +468,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 490003976}
     m_Modifications:
+    - target: {fileID: 943412546893303821, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
     - target: {fileID: 3466716315028704008, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -508,6 +516,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 45ba0c4e32ad5f847890feeba45889ea, type: 2}
+    - target: {fileID: 3565475422097176598, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
     - target: {fileID: 4946336718086966845, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: positionSO
       value: 
@@ -520,6 +532,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 45ba0c4e32ad5f847890feeba45889ea, type: 2}
+    - target: {fileID: 6117338017999358036, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 435bfa40fcc74984a9a1cb9edacc2bfd, type: 3}
+    - target: {fileID: 7306933290668912819, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -603,6 +623,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3565475422097176598, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3154393153befe344b0cae60e98bedb9, type: 2}
+    - target: {fileID: 4662492733632984113, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b95e92bab97e6a34d8247e2739851cb4, type: 2}
     - target: {fileID: 4946336718086966845, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: positionSO
       value: 
@@ -611,6 +639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hunter
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3154393153befe344b0cae60e98bedb9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -941,6 +973,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3565475422097176598, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
+    - target: {fileID: 4662492733632984113, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 189f4723030ad284f80b77ba829cae55, type: 2}
     - target: {fileID: 4946336718086966845, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: positionSO
       value: 
@@ -1030,6 +1070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FeFe
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dda7ce145d5bb67478e4f940cab41e85, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1923,6 +1967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rosco
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 82ef0fda701ef3f47aa5e0595052865c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2710,6 +2758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 490003976}
     m_Modifications:
+    - target: {fileID: 943412546893303821, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
     - target: {fileID: 3466716315028704008, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -2750,6 +2802,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3565475422097176598, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dda7ce145d5bb67478e4f940cab41e85, type: 2}
+    - target: {fileID: 4662492733632984113, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 208fd8747f2741044baa77572806bafd, type: 2}
     - target: {fileID: 4946336718086966845, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
       propertyPath: positionSO
       value: 
@@ -2758,6 +2818,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buddy
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a034bad264fc3d946947aa66d0e075cb, type: 2}
+    - target: {fileID: 7306933290668912819, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 071e662d51889aa448756370f6062a4e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2891,6 +2959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gizmo
       objectReference: {fileID: 0}
+    - target: {fileID: 5776869822454790388, guid: d8031ce22259cda459bff0fb7e11f14e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c03e8fbf770f7e43b804917e57deb90, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
